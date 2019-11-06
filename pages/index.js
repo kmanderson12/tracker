@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import { withApollo } from '../lib/apollo';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import Layout from '../components/Layout';
+import HabitList from '../components/HabitList';
+import HabitForm from '../components/HabitForm';
 
 const HELLO_QUERY = gql`
   query HelloQuery {
@@ -11,32 +14,15 @@ const HELLO_QUERY = gql`
 
 const Home = () => {
   const { data, loading, error } = useQuery(HELLO_QUERY);
+  const [habits, setHabits] = useState(['Do the dishes']);
   if (loading) return <div />;
-  console.log(data);
   return (
     <Layout>
       <div className="hero">
-        <h1 className="title">{data.sayHello}</h1>
-        <p className="description">
-          To get started, edit <code>pages/index.js</code> and save to reload.
-        </p>
-
-        <div className="row">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Learn more about Next.js in the documentation.</p>
-          </a>
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Next.js Learn &rarr;</h3>
-            <p>Learn about Next.js by following an interactive tutorial!</p>
-          </a>
-          <a
-            href="https://github.com/zeit/next.js/tree/master/examples"
-            className="card"
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Find other example boilerplates on the Next.js GitHub.</p>
-          </a>
+        <h1 className="title">Level Up Your Life</h1>
+        <div className="list">
+          <HabitForm setHabits={setHabits} />
+          <HabitList habits={habits} />
         </div>
       </div>
 
@@ -46,7 +32,7 @@ const Home = () => {
           color: #333;
         }
         .title {
-          margin: 0;
+          margin-top: 0;
           width: 100%;
           padding-top: 80px;
           line-height: 1.15;
@@ -56,34 +42,9 @@ const Home = () => {
         .description {
           text-align: center;
         }
-        .row {
-          max-width: 880px;
-          margin: 80px auto 40px;
-          display: flex;
-          flex-direction: row;
-          justify-content: space-around;
-        }
-        .card {
-          padding: 18px 18px 24px;
-          width: 220px;
-          text-align: left;
-          text-decoration: none;
-          color: #434343;
-          border: 1px solid #9b9b9b;
-        }
-        .card:hover {
-          border-color: #067df7;
-        }
-        .card h3 {
-          margin: 0;
-          color: #067df7;
-          font-size: 18px;
-        }
-        .card p {
-          margin: 0;
-          padding: 12px 0 0;
-          font-size: 13px;
-          color: #333;
+        .list {
+          max-width: 600px;
+          margin: 0 auto;
         }
       `}</style>
     </Layout>

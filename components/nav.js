@@ -22,11 +22,6 @@ const Nav = () => (
           <a>About</a>
         </Link>
       </li>
-      {links.map(({ key, href, label }) => (
-        <li key={key}>
-          <a href={href}>{label}</a>
-        </li>
-      ))}
     </ul>
 
     <style jsx>{`
