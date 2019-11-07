@@ -12,7 +12,7 @@ const Habit = ({ habit, index }) => {
           borderColor: colors[index],
         }}
       >
-        {habit}
+        {habit.name}
       </h3>
       <div className="buttons">
         {dates.map(date => (
