@@ -26,7 +26,7 @@ const REMOVE_EVENT = gql`
   }
 `;
 
-const HabitButton = ({ date, habitId, events }) => {
+const HabitButton = ({ date, habitId, habitName, events }) => {
   const [addEvent] = useMutation(ADD_EVENT, {
     refetchQueries: ['getHabits'],
   });

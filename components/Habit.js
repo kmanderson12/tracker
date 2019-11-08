@@ -20,6 +20,7 @@ const Habit = ({ habit, index }) => {
             key={date.getUTCDate()}
             date={date}
             habitId={habit._id}
+            habitName={habit.name}
             events={habit.events}
           />
         ))}
