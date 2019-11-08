@@ -16,7 +16,12 @@ const Habit = ({ habit, index }) => {
       </h3>
       <div className="buttons">
         {dates.map(date => (
-          <HabitButton key={date.getUTCDate()} date={date} />
+          <HabitButton
+            key={date.getUTCDate()}
+            date={date}
+            habitId={habit._id}
+            events={habit.events}
+          />
         ))}
       </div>
       <style jsx>
